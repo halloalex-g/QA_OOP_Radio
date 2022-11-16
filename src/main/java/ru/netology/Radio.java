@@ -1,10 +1,14 @@
+package ru.netology;
+
 public class Radio {
     public int currentStation;
+
     public int getCurrentStation() {
         return currentStation;
     }
 
     public int currentVolume;
+
     public int getCurrentVolume() {
         return currentVolume;
     }
