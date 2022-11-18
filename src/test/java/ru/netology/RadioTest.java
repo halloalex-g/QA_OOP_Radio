@@ -3,47 +3,88 @@ package ru.netology;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class RadioTest {
+ class RadioTest {
 
-    @Test
-    public void nextButton0_9() {
-        Radio station = new Radio();
-        station.setCurrentStation(1);
-        station.next();
+     @Test
+     public void shouldSetStationByDefault() {
+         Radio station = new Radio();
+         Assertions.assertEquals(10, station.getNumberOfStation());
+         Assertions.assertEquals(9, station.getMaxStation());
+     }
+     @Test
+     public void shouldSetStationManually() {
+         Radio station = new Radio(30);
+         Assertions.assertEquals(30, station.getNumberOfStation());
+         Assertions.assertEquals(29, station.getMaxStation());
+     }
 
-        int expected = 2;
-        int actual = station.getCurrentStation();
+     @Test
+     public void directSetStationSetDefaultRadio0_9() {
+         Radio station = new Radio();
+         station.setCurrentStation(8);
+         Assertions.assertEquals(8, station.getCurrentStation());
+     }
+     @Test
+     public void directSetStationSetDefaultRadioOverMax() {
+         Radio station = new Radio();
+         station.setCurrentStation(10);
+         Assertions.assertEquals(0, station.getCurrentStation());
+     }
 
-        Assertions.assertEquals(expected, actual);
-    }
+     @Test
+     public void directSetStationSetManually() {
+         Radio station = new Radio(30);
+         station.setCurrentStation(10);
+         Assertions.assertEquals(10, station.getCurrentStation());
+     }
+     @Test
+     public void directSetStationSetManuallyOverMax() {
+         Radio station = new Radio(30);
+         station.setCurrentStation(31);
+         Assertions.assertEquals(0, station.getCurrentStation());
+     }
+     @Test
+     public void nextButtonWithinMin_MaxStation() {
+         Radio station = new Radio();
+         station.setCurrentStation(1);
+         station.next();
+         Assertions.assertEquals(2, station.getCurrentStation());
+     }
+     @Test
+     public void nextButtonFromMaxStation() {
+         Radio station = new Radio(30);
+         station.setCurrentStation(29);
+         station.next();
+         Assertions.assertEquals(0, station.getCurrentStation());
+     }
+     @Test
+     public void prevButtonWithinMax_MinStation() {
+         Radio station = new Radio();
+         station.setCurrentStation(9);
+         station.prev();
+         Assertions.assertEquals(8, station.getCurrentStation());
+     }
+     @Test
+     public void prevButtonFromMinStation() {
+         Radio station = new Radio(30);
+         station.prev();
+         Assertions.assertEquals(29, station.getCurrentStation());
+     }
+ }
 
-    @Test
-    public void nextButton9_0() {
-        Radio station = new Radio();
-        station.setCurrentStation(9);
-        station.next();
 
-        int expected = 0;
-        int actual = station.getCurrentStation();
 
-        Assertions.assertEquals(expected, actual);
-    }
 
-    @Test
-    public void prevButton9_0() {
-        Radio station = new Radio();
-        station.setCurrentStation(9);
-        station.prev();
 
-        int expected = 8;
-        int actual = station.getCurrentStation();
 
-        Assertions.assertEquals(expected, actual);
-    }
+    /*
+
+
+
 
     @Test
     public void prevButton0_9() {
-        Radio station = new Radio();
+
         station.setCurrentStation(0);
         station.prev();
 
@@ -53,19 +94,11 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
 
-    @Test
-    public void directSetStation0_9() {
-        Radio station = new Radio();
-        station.setCurrentStation(8);
 
-        int expected = 8;
-        int actual = station.getCurrentStation();
-        Assertions.assertEquals(expected, actual);
-    }
 
     @Test
     public void directSetStationMore9() {
-        Radio station = new Radio();
+
         station.setCurrentStation(10);
 
         int expected = 0;
@@ -75,7 +108,7 @@ public class RadioTest {
 
     @Test
     public void directSetStationLess0() {
-        Radio station = new Radio();
+
         station.setCurrentStation(-1);
 
         int expected = 0;
@@ -85,7 +118,7 @@ public class RadioTest {
 
     @Test
     public void volumeIncrease0_9() {
-        Radio volume = new Radio();
+
         volume.setCurrentVolume(9);
         volume.increaseVolume();
 
@@ -96,7 +129,7 @@ public class RadioTest {
 
     @Test
     public void volumeIncrease10() {
-        Radio volume = new Radio();
+
         volume.setCurrentVolume(10);
         volume.increaseVolume();
 
@@ -107,7 +140,7 @@ public class RadioTest {
 
     @Test
     public void volumeDecrease10_1() {
-        Radio volume = new Radio();
+
         volume.setCurrentVolume(1);
         volume.decreaseVolume();
 
@@ -117,7 +150,7 @@ public class RadioTest {
     }
     @Test
     public void volumeDecrease0() {
-        Radio volume = new Radio();
+
         volume.setCurrentVolume(0);
         volume.decreaseVolume();
 
@@ -128,7 +161,7 @@ public class RadioTest {
 
     @Test
     public void VolShouldNotSetLess0() {
-        Radio volume = new Radio();
+
         volume.setCurrentVolume(-1);
 
         int expected = 0;
@@ -138,7 +171,7 @@ public class RadioTest {
 
     @Test
     public void volShouldNotSetMore10() {
-        Radio volume = new Radio();
+
         volume.setCurrentVolume(11);
 
         int expected = 0;
@@ -148,11 +181,11 @@ public class RadioTest {
 
     @Test
     public void shouldSetVol0_10() {
-        Radio volume = new Radio();
+
         volume.setCurrentVolume(5);
 
         int expected = 5;
         int actual = volume.getCurrentVolume();
         Assertions.assertEquals(expected, actual);
     }
-}
+}*/
